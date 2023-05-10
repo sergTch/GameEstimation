@@ -11,7 +11,7 @@ public:
 	~Position();
 
 	bool filled = false;
-	Position* previous;
+	Position* previous = nullptr;
 	std::vector<Position*> next;
 
 	int turn = 1;
