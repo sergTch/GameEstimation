@@ -1,6 +1,8 @@
 #pragma once
 #include <vector>
 #include <fstream>
+#include "matrix.h"
+
 
 class Position
 {
@@ -16,18 +18,22 @@ public:
 
 	int turn = 1;
 	double rating = 0;
+	double reward = 0;
 
-	void DeepEstimation(int depth, bool first);
+	void DeepEstimation(int depth, bool first = true);
 
-	virtual void newGame();
-	virtual void Estimate();
-	virtual void FillNext();
+	virtual void newGame() = 0;
+	virtual void Estimate() = 0;
+	virtual void FillNext() = 0;
 
 	Position* makeMove(int t);
 	Position* makeBestMove(int depth);
 	void freeNext();
+	void freePrevious();
 
 	virtual void show();
 	virtual void read(std::istream& fin);
 	virtual void save(std::ostream& fout);
+
+	virtual matrix vectorize();
 };

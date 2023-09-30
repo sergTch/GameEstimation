@@ -1,0 +1,7 @@
+6 1
+-nan(ind) 
+-nan(ind) 
+-nan(ind) 
+-nan(ind) 
+-nan(ind) 
+-nan(ind) 

@@ -104,6 +104,7 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
+      <AdditionalIncludeDirectories>..\NeuralNetwork\NeuralNetwork;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -118,6 +119,7 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
+      <AdditionalIncludeDirectories>../NeuralNetwork/NeuralNetwork</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -127,14 +129,24 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="..\NeuralNetwork\NeuralNetwork\layer.cpp" />
+    <ClCompile Include="..\NeuralNetwork\NeuralNetwork\matrix.cpp" />
+    <ClCompile Include="..\NeuralNetwork\NeuralNetwork\network.cpp" />
+    <ClCompile Include="..\NeuralNetwork\NeuralNetwork\timer.cpp" />
     <ClCompile Include="Checkers.cpp" />
     <ClCompile Include="CheckersInit.cpp" />
     <ClCompile Include="GameEstimation.cpp" />
+    <ClCompile Include="geometry.cpp" />
     <ClCompile Include="Position.cpp" />
+    <ClCompile Include="RLAgent.cpp" />
+    <ClCompile Include="Rocket.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Checkers.h" />
+    <ClInclude Include="geometry.h" />
     <ClInclude Include="Position.h" />
+    <ClInclude Include="RLAgent.h" />
+    <ClInclude Include="Rocket.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

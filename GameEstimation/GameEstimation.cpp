@@ -1,4 +1,5 @@
 #include <iostream>
+#include <iomanip>
 #include <algorithm>
 #include <vector>
 #include <ctime>
@@ -6,6 +7,9 @@
 #include <queue>
 #include <string>
 #include "Checkers.h"
+#include "network.h"
+#include "Rocket.h"
+#include "RLAgent.h"
 
 void runBoard(int depth) {
 	int t;
@@ -38,14 +42,26 @@ void readAndMove(int depth) {
 
 int main()
 {
+	std::cout << std::fixed << std::setprecision(2);
 	std::string file = "positions.txt";
 	int depth = 100000000;
+	Checkers::ConnectionsInit();
+	Rocket::NetInit();
+
 	clock_t tStart = clock();
 	std::srand(unsigned(std::time(0)));
-	Checkers::ConnectionsInit();
 
-	runBoard(depth);
-	//readAndMove(depth);
+	//runBoard(depth);
+	////readAndMove(depth);
+
+	Qlearn qagent;
+
+	qagent.nn = &Rocket::net;
+	qagent.pos = new Rocket();
+
+	//Rocket::net.load("rocket");
+	qagent.train(10000000000, 1);
+	//Rocket::net.save("rocket");
 
 	printf("Time taken: %.2fs\n", (double)(clock() - tStart) / CLOCKS_PER_SEC);
 	return 0;

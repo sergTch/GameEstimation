@@ -16,7 +16,6 @@ void Position::DeepEstimation(int depth, bool first) {
 	FillNext();
 
 	if (depth < next.size()) {
-		//return;
 		for (int i = 0; i < next.size(); i++) {
 			next[i]->Estimate();
 			rating = turn * std::max(turn * rating, turn * next[i]->rating);
@@ -36,7 +35,7 @@ void Position::DeepEstimation(int depth, bool first) {
 		next[i]->DeepEstimation(depth/next.size(), false);
 		rating = turn * std::max(turn * rating, turn * next[i]->rating);
 
-		if (!first && rating * turn >= previous->rating * turn)
+		if (turn * previous-> turn == -1 && !first && rating * turn >= previous->rating * turn)
 			return;
 	}
 }
@@ -68,27 +67,11 @@ Position* Position::makeBestMove(int depth) {
 			return makeMove(i);
 }
 
-void Position::newGame() {
+void Position::show() { }
 
-}
+void Position::save(std::ostream& fout) { }
 
-void Position::Estimate() {
-
-}
-
-void Position::FillNext() {
-
-}
-
-void Position::show() {
-
-}
-
-void Position::save(std::ostream& fout) {
-}
-
-void Position::read(std::istream& fin) {
-}
+void Position::read(std::istream& fin) { }
 
 void Position::freeNext() {
 	if (next.size() != 0) {
@@ -96,4 +79,21 @@ void Position::freeNext() {
 			delete next[i];
 		next = std::vector<Position*>(0);
 	}
+}
+
+void Position::freePrevious()
+{
+	if (previous) {
+		previous->next = std::vector<Position*>(0);
+		Position* root = this;
+
+		while (root->previous)
+			root = root->previous;
+		delete root;
+		previous = nullptr;
+	}
+}
+
+matrix Position::vectorize() {
+	return 0;
 }
